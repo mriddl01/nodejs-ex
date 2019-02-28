@@ -21,16 +21,6 @@
 
 <!-- tocstop -->
 
-oc new-project nodejs-dev
-oc new-project nodejs-stage
-
-From Jenkins Project
-
-oc policy add-role-to-user admin system:serviceaccount:cicd:jenkins -n nodejs-dev
-oc policy add-role-to-user admin system:serviceaccount:cicd:jenkins -n nodejs-stage
-
-oc process -f  -p DEV_PROJECT=nodejs-dev -p STAGE_PROJECT=nodejs-stage -o yaml | oc create -f-
-
 ## Node.js sample app on OpenShift!
 -----------------
 
@@ -39,12 +29,22 @@ This example will serve a welcome page and the current hit count as stored in a 
 
 ### Setup 
 
+oc new-project nodejs-dev
+oc new-project nodejs-stage
+
+From Jenkins Project
+
+oc policy add-role-to-user admin system:serviceaccount:cicd:jenkins -n nodejs-dev
+oc policy add-role-to-user admin system:serviceaccount:cicd:jenkins -n nodejs-stage
+
+oc process -f  https://raw.githubusercontent.com/mikes-org/nodejs-ex/master/openshift/templates/nodejs-mongo-cicd.yml -p DEV_PROJECT=nodejs-dev -p STAGE_PROJECT=nodejs-stage -o yaml | oc create -f-
+
 
 
 
 #### Success
 
-You should now have a Node.js welcome page showing the current hit count, as stored in a MongoDB database.
+You should now have a Node.js User edit page.
 
 #### Pushing updates
 
