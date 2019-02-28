@@ -101,13 +101,10 @@ objects:
     resources: {}
     runPolicy: Serial
     source:
-      git:
-        uri: https://github.com/mikes-org/nodejs-ex.git
-      type: Git
+      binary: {}
+      type: Binary
     strategy:
       sourceStrategy:
-        env:
-        - name: NPM_MIRROR
         from:
           kind: ImageStreamTag
           name: nodejs:10
