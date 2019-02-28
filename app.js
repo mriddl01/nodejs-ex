@@ -44,14 +44,17 @@ if (mongoURL == null) {
   }
 }
 
-
+console.log("Mongo Connection:" + mongoURL);
 
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect(mongoURL)
-  .then(() =>  console.log('connection succesful'))
-  .catch((err) => console.error(err));
+if (mongoURL)
+{
+  mongoose.connect(mongoURL)
+    .then(() =>  console.log('connection succesful'))
+   .catch((err) => console.error(err));
+}
 
 var userdata = require('./routes/userdata');
 var users = require('./routes/users');
