@@ -44,6 +44,47 @@ pipeline {
        }
    }
 
+
+   stage('Deploy DEV') {
+      steps {
+         script {
+            openshift.withCluster() {
+              openshift.withProject(env.DEV_PROJECT) {
+                openshift.selector("dc", "${APP_NAME}").rollout().latest();
+              }
+            }
+        }
+     }
+   }
+
+   stage('Promote to Stage') {
+      steps {
+          timeout(time:15, unit:'MINUTES') {
+             input message: "Promote to STAGE?", ok: "Promote"
+         }
+
+         script {
+            openshift.withCluster() {
+                openshift.tag("${env.DEV_PROJECT}/tasks:latest", "${env.STAGE_PROJECT}/tasks:stage")
+            }
+        }
+     }
+   }
+
+
+   stage('Deploy Stage') {
+      steps {
+         script {
+            openshift.withCluster() {
+              openshift.withProject(env.STAGE_PROJECT) {
+                openshift.selector("dc", "${APP_NAME}").rollout().latest();
+              }
+            }
+        }
+     }
+   }
+
+
   }
 }
 

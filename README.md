@@ -246,6 +246,12 @@ If you get stuck at some point, or think that this document needs further detail
 
 ### Compatibility
 
+## Setup
+
+Jenkins nodejs slave image needs to be : registry.access.redhat.com/openshift3/jenkins-agent-nodejs-8-rhel7
+
+oc policy add-role-to-user admin system:serviceaccount:node-dev:jenkins -n <Staging Project>
+
 This repository is compatible with Node.js 4 and higher, excluding any alpha or beta versions.
 
 ### License
