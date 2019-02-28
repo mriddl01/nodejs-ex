@@ -8,11 +8,13 @@ var util = require( 'util' );
 /* GET ALL USERS */
 router.get('/',async  function(req, res, next) {
   console.log("Get all user");
-  User.find(function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });	  
-  
+    User.find().then(function (post) {
+      res.json(post);
+    })
+  .catch(function(err) {
+    return res.json(err);
+  });
+
 });
 
 
