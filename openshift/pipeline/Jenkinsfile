@@ -23,6 +23,7 @@ pipeline {
 
        steps {
          script {
+           sh "node --version"
            sh "npm install"
            sh "npm test"
          }
