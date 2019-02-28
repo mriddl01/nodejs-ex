@@ -1,6 +1,46 @@
-node('nodejs') {
-  stage 'build'
-  openshiftBuild(buildConfig: 'nodejs-ex', showBuildLogs: 'true')
-  stage 'deploy'
-  openshiftDeploy(deploymentConfig: 'nodejs-ex')
+openshift.withCluster() {
+  env.APP_NAME = "${APP_NAME}"
+  env.BUILD = openshift.project()
+  env.DEV = "${DEV_PROJECT}"
+  env.STAGE = "${STAGE_PROJECT}"
+  echo "Starting Pipeline for ${APP_NAME}..."
 }
+
+pipeline {
+  agent {
+    label 'nodejs'
+  }
+
+
+  stages {
+    stage('Git Checkout') {
+      steps {
+        scm checkout
+      }
+    }
+
+    stage('Test') {
+      steps {
+        sh "npm test"
+      }
+    }
+
+    stage('Build Image') {
+       
+       steps {
+         script {
+            openshift.withCluster() {
+              openshift.withProject(env.DEV_PROJECT) {
+                openshift.selector("bc", "${APP_NAME}").startBuild("--from-file=.", "--wait=true")
+              }
+            }
+         }
+       }
+   }
+
+  }
+}
+
+println "Application ${env.APP_NAME} is now in Production!"
+
+
