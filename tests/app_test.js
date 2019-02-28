@@ -1,4 +1,4 @@
-var server   = require('../server'),
+var server   = require('../app'),
     chai     = require('chai'),
     chaiHTTP = require('chai-http'),
     should   = chai.should();
@@ -19,9 +19,9 @@ describe('Basic routes tests', function() {
 
     })
 
-    it('GET to /pagecount should return 200', function(done){
+    it('GET to /userdata should return 200', function(done){
         chai.request(reqServer)
-        .get('/pagecount')
+        .get('/userdata')
         .end(function(err, res) {
             res.should.have.status(200);
             done();
