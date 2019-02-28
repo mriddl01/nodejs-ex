@@ -1,0 +1,84 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+div {
+	padding-left: 10px;
+	padding-right: 10px;	
+	padding-top: 10px;
+	
+}
+
+th, td 
+{
+    padding: 5px;
+    margin: 5px 3px 5px 8px;
+    text-align: left;
+}
+
+table {
+  border: 1px solid #000;
+}
+
+th, td {
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  padding: 0.3em;
+}
+
+
+div.divhide { display: none }
+div.divshow { display: block }
+div.divLeft { float:left }
+
+div.divPopupHidden { display: none }
+div.divPopupShow { display: float }
+
+a.divLarge {
+   color:blue; 
+   font: bold 25px arial, sans-serif;
+}
+
+.roundHeader {
+   color:blue; 
+   font: bold 15px arial, sans-serif;
+}
+.trRowAlert {
+   color:red; 
+   font: bold 15px arial, sans-serif;
+}
+.trRowNormal {
+   color:black;
+   font: 15px arial, sans-serif;
+}
+
+.messageAlert {
+   color:red; 
+   font: bold 25px arial, sans-serif;
+}
+.messageNormal {
+   color:blue;
+   font: bold 25px arial, sans-serif;
+}
+
+td.tdTitle {
+   color:blue;
+   font: bold 25px arial, sans-serif;
+}
+
+.container{
+    display: flex;
+}
+.fixed{
+    width: 200px;
+}
+.flex-item{
+    flex-grow: 1;
+}
