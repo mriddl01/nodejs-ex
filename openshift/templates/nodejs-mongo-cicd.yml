@@ -95,7 +95,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: nodejs-mongodb-example:latest
+        name: ${APP_NAME}:latest
     postCommit:
       script: npm test
     resources: {}
