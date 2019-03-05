@@ -34,6 +34,9 @@ parameters:
   name: DATABASE_NAME
   value: sampledb
   required: true
+- name: MONGODB_VERSION
+  value: 3.6
+  required: true
 objects:
 - apiVersion: build.openshift.io/v1
   kind: BuildConfig
