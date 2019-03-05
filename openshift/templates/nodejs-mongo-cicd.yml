@@ -375,7 +375,7 @@ objects:
     name: ${APP_NAME}
     namespace: ${DEV_PROJECT}
   spec:
-    replicas: 0
+    replicas: 1
     revisionHistoryLimit: 10
     selector:
       name: ${APP_NAME}
@@ -482,8 +482,9 @@ objects:
       app: ${APP_NAME}
       template: ${APP_NAME}
     name: ${APP_NAME}
+    namespace: ${STAGE_PROJECT}
   spec:
-    replicas: 0
+    replicas: 1
     revisionHistoryLimit: 10
     selector:
       name: ${APP_NAME}
